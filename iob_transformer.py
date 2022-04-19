@@ -92,7 +92,7 @@ class iob_transformer():
                         texto_entidade_tok = self.tokenizer.tokenize(texto_entidade)
                     else:
                         texto_entidade_tok = word_tokenize(texto_entidade)
-                    if 'Ato' not in tipo_entidade:
+                    if not tipo_entidade.isupper():
                         tup_entidade = _constroi_iob(texto_entidade, tipo_entidade)
                         iob_ato.append(tup_entidade)
                 # anotação do ato inteiro
@@ -103,7 +103,7 @@ class iob_transformer():
                         texto_entidade_tok = self.tokenizer.tokenize(texto_entidade)
                     else:
                         texto_entidade_tok = word_tokenize(texto_entidade)
-                    if 'Ato' in tipo_entidade:
+                    if tipo_entidade.isupper():
                         texto_ato = texto_entidade_tok
                         texto_ato_iob = _match_iob_texto_ato(texto_entidade_tok, iob_ato)
                 texto_ato_iob = _inclui_tags_vazias(texto_ato_iob)
